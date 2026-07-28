@@ -97,7 +97,7 @@ Pastikan sudah terpasang:
 
 ### 2. Ambil kode
 ```bash
-git clone <url-repo-kamu> hestia
+git clone https://github.com/rinorouu/hestia.git
 cd hestia/server
 ```
 
