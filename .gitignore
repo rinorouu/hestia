@@ -1,0 +1,66 @@
+# ─────────────────────────────────────────────
+#  Hestia — .gitignore
+# ─────────────────────────────────────────────
+
+# ── Node / Backend ──
+node_modules/
+npm-debug.log*
+yarn-error.log*
+coverage/
+
+# ── Environment & secrets (lihat docs/SECURITY.md) ──
+.env
+*.env
+!.env.example
+
+# ── Database & data lokal (metadata; file asli ada di HDD) ──
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# ── Storage lokal saat dev (bila STORAGE_MOUNT_PATH di dalam repo) ──
+storage/
+uploads/
+
+# ── Docs — hanya untuk kebutuhan lokal, tidak di-push ──
+# (Hapus baris ini bila ingin docs ikut ke perangkat lain sbg acuan.)
+docs/
+
+# ── Flutter / Dart (folder app/ pada Tahap 4) ──
+**/.dart_tool/
+**/build/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/.pub-cache/
+**/.pub/
+# Catatan: pubspec.lock untuk APLIKASI sebaiknya TETAP di-push (jangan di-ignore).
+
+# ── Android (build & KUNCI SIGNING — jangan pernah di-push) ──
+**/android/.gradle/
+**/android/local.properties
+**/android/key.properties
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+*.jks
+*.keystore
+
+# ── iOS (bila nanti build iOS) ──
+**/ios/Pods/
+**/ios/.symlinks/
+**/Flutter/Flutter.framework/
+**/Flutter/flutter_export_environment.sh
+
+# ── Editor / IDE ──
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+
+# ── Logs & OS ──
+*.log
+.DS_Store
+Thumbs.db
+Desktop.ini
