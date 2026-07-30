@@ -2,10 +2,10 @@
 
 # 🏛️ Hestia
 
-**Self-hosted photo & video storage untuk keluarga.**
+**Self-hosted photo & video storage**
 
-Simpan, akses, dan kelola foto serta video dari smartphone ke HDD eksternal
-di server pribadimu — sederhana, cepat, ringan, dan sepenuhnya privat.
+Simpan, akses, dan kelola foto serta video dari ponsel ke Hard disk
+di servermu — sederhana, cepat, ringan, dan pastinya privat.
 
 ![status](https://img.shields.io/badge/status-in%20development-orange)
 ![backend](https://img.shields.io/badge/backend-Node.js%20%2B%20Express-green)
@@ -16,42 +16,37 @@ di server pribadimu — sederhana, cepat, ringan, dan sepenuhnya privat.
 
 ---
 
-## 📖 Tentang Hestia
+## 📖 Apa itu Hestia?
 
 **Hestia** adalah aplikasi penyimpanan foto & video yang berjalan di **server pribadi**
 (mini PC, Raspberry Pi, atau home server) dan menyimpan seluruh file langsung ke
-**HDD eksternal** milikmu.
+**Hard Disk eksternal** punyamu.
 
-Tujuannya bukan meniru Google Photos atau Immich, melainkan menyediakan solusi
-penyimpanan keluarga yang **privat, ringan, dan mudah digunakan**. Setiap anggota
-keluarga punya akun sendiri, ruang penyimpanan sendiri, dan hak akses sendiri.
-Semua data tetap berada di perangkatmu — **tidak ada cloud pihak ketiga.**
+Tujuannya bukan meniru Google Photos atau aplikasi cloud poto pada umumnya, aplikasi ini dibuat sebagai solusi
+penyimpanan keluarga yang **privat, ringan, dan mudah digunain**. Setiap anggota
+keluarga punya akun sendiri, storage sendiri, dan hak akses sendiri.
+Semua data tetap berada di perangkat prbadimu — **tidak ada cloud pihak ketiga sama sekali.**
 
-> Nama "Hestia" diambil dari dewi perapian & rumah dalam mitologi Yunani —
+> Kenapa Hestia? Nama "Hestia" diambil dari dewi perapian & rumah dalam mitologi Yunani —
 > melambangkan tempat yang aman untuk menyimpan kenangan keluarga.
-
-**Prinsip:** Simple · Fast · Lightweight · Privacy First · Offline Friendly
 
 ---
 
 ## ✨ Fitur
 
-- 🔐 **Registrasi & login** — akun berbasis email + password, autentikasi token (JWT).
-- 👨‍👩‍👧‍👦 **Multi-user** — banyak akun dalam satu server, penyimpanan tiap user terisolasi.
-- ⬆️ **Upload foto & video** — satu atau banyak file sekaligus, mendukung subfolder.
+- 🔐 **Registrasi & login** — akun berbasis email + password, autentikasi token. (sengaja dibuat gini, biar keren aja)
+- 👨‍👩‍👧‍👦 **Multi-user** — biar anggota keluarga bisa pakai semuanya.
+- ⬆️ **Upload foto & video** — satu atau banyak file sekaligus, bisa bikin subfolder juga.
 - 🗂️ **Browse file** — jelajahi folder, lihat thumbnail, ukuran, dan tanggal upload.
-- 🖼️ **Thumbnail otomatis** — pratinjau gambar dibuat otomatis saat upload.
-- ⬇️ **Download** — ambil file kembali ke smartphone (mendukung resume/streaming).
-- 🕘 **Riwayat upload** — catatan file yang berhasil & gagal diunggah.
-- 💽 **Deteksi HDD** — upload otomatis ditolak bila HDD eksternal belum terpasang.
+- 🖼️ **Thumbnail otomatis** — pratinjau gambar dibuat otomatis pas upload.
+- ⬇️ **Download** — ambil poto yang ada di hard disk bisa langsung, dimanapunn kapanpun (mendukung resume/streaming).
+- 🕘 **Riwayat upload** — catatan file yang berhasil atau gagal di upload.
+- 💽 **Deteksi HDD** — jadi disini wajib pasang hdd eksternal ya!
 - 🔒 **Aman** — password di-hash, isolasi antar-user, proteksi path & validasi file.
-
-**Direncanakan:** aplikasi Android (Flutter), Auto Sync, album, favorite, pencarian,
-share link, recycle bin, dan enkripsi penyimpanan.
 
 ---
 
-## 🧰 Tools yang Digunakan
+## 🧰 Tools yang Diperlukan
 
 | Kategori | Teknologi |
 |----------|-----------|
@@ -78,13 +73,11 @@ share link, recycle bin, dan enkripsi penyimpanan.
 | **Penyimpanan** | HDD eksternal | HDD + HDD kedua untuk backup |
 | **Jaringan** | LAN (jaringan lokal) | LAN + domain & HTTPS untuk akses internet |
 
-> 💡 **Belum punya/pasang HDD?** Untuk uji coba, penyimpanan bisa diarahkan ke folder
-> biasa (atur `REQUIRE_MOUNT=false`). HDD fisik baru diperlukan untuk penggunaan nyata.
 
-### Perangkat pengguna (keluarga)
+### Perangkat pengguna
 
 - Smartphone **Android**.
-- Aplikasi dipasang langsung via file **APK** (tidak wajib lewat Play Store).
+- Aplikasi dipasang langsung via file **APK** (yang akan di buat nanti)
 
 ---
 
@@ -97,7 +90,7 @@ Pastikan sudah terpasang:
 
 ### 2. Ambil kode
 ```bash
-git clone <url-repo-kamu> hestia
+git clone https://github.com/rinorouu/hestia.git
 cd hestia/server
 ```
 
@@ -144,5 +137,5 @@ Server berjalan di **`http://localhost:3000`**. Cek dengan membuka `http://local
 ---
 
 <div align="center">
-<sub>Proyek pribadi/keluarga — semua data tetap milikmu. 🏛️</sub>
+<sub>100% privat — semua data adalah milikmu. 🔒</sub>
 </div>
