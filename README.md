@@ -17,8 +17,7 @@ di server pribadimu — Ini sangat sederhana, cepat, ringan, dan sepenuhnya priv
 ---
 
 <div align="center">
-![license](https://img.shields.io/github/license/rinorouu/hesti
-  a)
+![license](https://img.shields.io/github/license/rinorouu/hestia)
 </div>
 
 ---
