@@ -2,10 +2,10 @@
 
 # 🏛️ Hestia
 
-**Self-hosted photo & video storage untuk keluarga**
+**Self-hosted photo & video storage**
 
 Simpan, akses, dan kelola foto serta video dari ponsel langsung ke Hard Disk
-di server pribadimu — sederhana, cepat, ringan, dan sepenuhnya privat.
+di server pribadimu — Ini sangat sederhana, cepat, ringan, dan sepenuhnya privat.
 
 ![status](https://img.shields.io/badge/status-in%20development-orange)
 ![backend](https://img.shields.io/badge/backend-Node.js%20%2B%20Express-green)
@@ -22,7 +22,7 @@ di server pribadimu — sederhana, cepat, ringan, dan sepenuhnya privat.
 (mini PC, Raspberry Pi, atau home server) dan menyimpan seluruh file langsung ke
 **Hard Disk eksternal** milikmu.
 
-Tujuannya bukan meniru Google Photos atau layanan cloud pada umumnya, melainkan
+Tujuannya bukan meniru layanan poto cloud pada umumnya, melainkan
 menyediakan solusi penyimpanan keluarga yang **privat, ringan, dan mudah digunakan**.
 Setiap anggota keluarga memiliki akun sendiri, ruang penyimpanan sendiri, dan hak akses
 sendiri. Seluruh data tetap berada di perangkat pribadimu — **tanpa cloud pihak ketiga.**
@@ -43,20 +43,6 @@ sendiri. Seluruh data tetap berada di perangkat pribadimu — **tanpa cloud piha
 - 🕘 **Riwayat upload** — catatan file yang berhasil maupun gagal diunggah.
 - 💽 **Deteksi HDD** — upload otomatis dinonaktifkan bila Hard Disk eksternal belum terpasang.
 - 🔒 **Aman** — password di-hash, isolasi antar-pengguna, proteksi path & validasi tipe file.
-
----
-
-## 🗂️ Struktur Proyek
-
-```
-hestia/
-├── backend/      # Server API (Node.js + Express + SQLite)
-│   └── server/
-├── frontend/     # Aplikasi mobile (Flutter)
-│   └── app/
-├── README.md
-└── CHANGELOG.md
-```
 
 ---
 
@@ -101,8 +87,7 @@ hestia/
 ### Perangkat Pengguna
 
 - Smartphone **Android**.
-- Aplikasi dipasang langsung melalui file **APK** (tidak wajib lewat Play Store).
-
+- Aplikasi dipasang langsung melalui file **APK**
 ---
 
 ## 🚀 Cara Install — Server (Backend)
@@ -182,5 +167,5 @@ Ponsel harus berada di jaringan yang sama dengan server, atau terhubung melalui 
 ---
 
 <div align="center">
-<sub>100% privat — semua data adalah milikmu. 🔒</sub>
+<sub>100% privat — Momenmu adalah milikmu. 🔒</sub>
 </div>
