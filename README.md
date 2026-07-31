@@ -16,6 +16,12 @@ di server pribadimu — Ini sangat sederhana, cepat, ringan, dan sepenuhnya priv
 
 ---
 
+<div align="center">
+![license](https://img.shields.io/github/license/rinorouu/hesti
+  a)
+</div>
+
+---
 ## 📖 Apa itu Hestia?
 
 **Hestia** adalah aplikasi penyimpanan foto & video yang berjalan di **server pribadi**
