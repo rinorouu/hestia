@@ -7,7 +7,7 @@
 Simpan, akses, dan kelola foto serta video dari ponsel langsung ke Hard Disk
 di server pribadimu — Ini sangat sederhana, cepat, ringan, dan sepenuhnya privat.
 
-![status](https://img.shields.io/badge/status-in%20development-orange)
+![status](https://img.shields.io/badge/status-beta-yellow)
 ![backend](https://img.shields.io/badge/backend-Node.js%20%2B%20Express-green)
 ![mobile](https://img.shields.io/badge/mobile-Flutter-blue)
 ![db](https://img.shields.io/badge/db-SQLite-lightgrey)
