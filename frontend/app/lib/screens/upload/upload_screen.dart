@@ -1,5 +1,5 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/api_exception.dart';
@@ -18,7 +18,7 @@ class UploadScreen extends StatefulWidget {
 }
 
 class _UploadScreenState extends State<UploadScreen> {
-  final List<PlatformFile> _selected = [];
+  final List<PickedMedia> _selected = [];
   final _folderController = TextEditingController();
   bool _uploading = false;
   double? _progress;
@@ -32,15 +32,18 @@ class _UploadScreenState extends State<UploadScreen> {
   }
 
   Future<void> _pickFiles() async {
-    final result = await FilePicker.platform.pickFiles(
-      allowMultiple: true,
-      type: FileType.media,
-    );
-    if (result == null) return;
+    // Buka Galeri / Photo Picker sistem (bukan file manager) — pilih banyak
+    // foto & video sekaligus.
+    final picked = await ImagePicker().pickMultipleMedia();
+    if (picked.isEmpty) return;
+    final media = [
+      for (final x in picked) PickedMedia(path: x.path, name: x.name, size: await x.length()),
+    ];
+    if (!mounted) return;
     setState(() {
       _selected
         ..clear()
-        ..addAll(result.files);
+        ..addAll(media);
       _result = null;
       _error = null;
     });
@@ -115,7 +118,7 @@ class _UploadScreenState extends State<UploadScreen> {
           OutlinedButton.icon(
             onPressed: storageAvailable && !_uploading ? _pickFiles : null,
             icon: const Icon(Icons.add_photo_alternate_outlined),
-            label: const Text('Pilih foto / video'),
+            label: const Text('Pilih dari galeri'),
           ),
           const SizedBox(height: 12),
           for (final entry in _selected.asMap().entries)

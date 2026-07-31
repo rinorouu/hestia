@@ -1,12 +1,44 @@
 # Changelog
 
 Semua perubahan penting pada Hestia dicatat di file ini.
-Format mengikuti [Keep a Changelog](https://keepachangelog.com/), pengembangan bertahap sesuai `docs/ROADMAP.md`.
+Format mengikuti [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Struktur & Rilis (2026-07-31)
+
+#### Changed
+- Restrukturisasi repositori menjadi dua bagian: `backend/` (server Node.js) dan
+  `frontend/` (aplikasi Flutter), agar batas backend & frontend jelas.
+- Upload di aplikasi kini mengambil media **langsung dari galeri** (Photo Picker sistem)
+  memakai `image_picker`, menggantikan pemilih berkas `file_picker`.
+
+#### Added
+- Ikon aplikasi Hestia (lambang api perapian) di-generate via `flutter_launcher_icons`;
+  label aplikasi diset "Hestia".
+
+#### Fixed
+- Konfigurasi build Android: `compileSdk` diset ke 36 dan seluruh plugin diselaraskan —
+  mengatasi kegagalan build rilis akibat ketidakcocokan versi SDK antar-plugin.
+- Manifest menambahkan izin `INTERNET` dan `usesCleartextTraffic="true"` agar APK **rilis**
+  dapat terhubung ke server di jaringan lokal (HTTP).
+
+### Aplikasi Mobile — Flutter (2026-07-29)
+
+Aplikasi mobile Android sebagai klien Hestia (`frontend/app`).
+
+#### Added
+- Alur autentikasi: setup alamat server → splash (restore sesi via `/auth/me`) → login & register.
+- Navigasi utama 4 tab: **Jelajah**, **Upload**, **Riwayat**, **Pengaturan**, dengan banner
+  status penyimpanan yang menyegar otomatis.
+- **Jelajah**: grid thumbnail (cache + header `Authorization`) dan paginasi infinite scroll.
+- **Upload**: pilih banyak foto/video, indikator progres, otomatis nonaktif bila storage server tidak tersedia.
+- **Download**: simpan ke penyimpanan sementara lalu buka/bagikan via share sheet OS.
+- **Riwayat** upload & **Pengaturan** server (ubah alamat server, logout).
+- Token disimpan di `flutter_secure_storage`; state via `provider`; HTTP via `dio` (interceptor Authorization).
+
 ### Tahap 3 — File Backend (2026-07-28)
-Upload, browse, download, delete, thumbnail, dan riwayat — sesuai `docs/API_SPEC.md` & `docs/ARCHITECTURE.md`.
+Upload, browse, download, delete, thumbnail, dan riwayat.
 
 #### Added
 - `POST /api/upload` — multipart, single & multiple file, field `path` untuk subfolder.
@@ -37,7 +69,7 @@ Upload, browse, download, delete, thumbnail, dan riwayat — sesuai `docs/API_SP
   delete (file hilang dari HDD), guard 503, dan path traversal 400 (tanpa kebocoran file).
 
 ### Tahap 2 — Auth Backend (2026-07-28)
-Autentikasi berbasis email + JWT sesuai `docs/API_SPEC.md` & `docs/SECURITY.md`.
+Autentikasi berbasis email + JWT.
 
 #### Added
 - `POST /api/auth/register` — daftar akun (email, password, display_name), balas user + JWT.
@@ -62,7 +94,7 @@ Autentikasi berbasis email + JWT sesuai `docs/API_SPEC.md` & `docs/SECURITY.md`.
   login benar/salah, `/me` dengan & tanpa token, `/storage/status` dengan & tanpa token — semua sesuai harapan.
 
 ### Tahap 1 — Fondasi Backend (2026-07-28)
-Fondasi server API sesuai `docs/ARCHITECTURE.md`. Belum ada auth/upload (menyusul di Tahap 2 & 3).
+Fondasi server API. Belum ada auth/upload (menyusul di Tahap 2 & 3).
 
 #### Added
 - Struktur project backend di `server/` (Node.js + Express, ES modules).
@@ -75,9 +107,9 @@ Fondasi server API sesuai `docs/ARCHITECTURE.md`. Belum ada auth/upload (menyusu
   Auto-membuat layout `Users/`, `Shared/`, `System/` saat storage tersedia.
 - Endpoint `GET /api/storage/status` — melaporkan ketersediaan HDD + total/free bytes.
 - Endpoint `GET /api/health` — health check.
-- Format error API standar `{ error: { code, message } }` sesuai `docs/API_SPEC.md`.
-- Error handler terpusat yang tidak membocorkan detail internal (sesuai `docs/SECURITY.md`).
-- `.gitignore` (root) — mengecualikan `node_modules/`, `.env`, `data/`, dan `docs/` (lokal).
+- Format error API standar `{ error: { code, message } }`.
+- Error handler terpusat yang tidak membocorkan detail internal.
+- `.gitignore` (root) — mengecualikan `node_modules/`, `.env`, dan `data/`.
 
 #### Notes
 - `DB_PATH` default dev: `./data/hestia.db`. Produksi disarankan diarahkan ke
@@ -86,4 +118,4 @@ Fondasi server API sesuai `docs/ARCHITECTURE.md`. Belum ada auth/upload (menyusu
 - Diuji manual: server jalan, health OK, storage status benar untuk kondisi
   HDD tidak ada / tersedia, tabel DB terbentuk, folder layout otomatis dibuat.
 
-[Unreleased]: https://example.com/hestia/tree/main
+[Unreleased]: https://github.com/rinorouu/hestia

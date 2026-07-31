@@ -2,10 +2,10 @@
 
 # 🏛️ Hestia
 
-**Self-hosted photo & video storage**
+**Self-hosted photo & video storage untuk keluarga**
 
-Simpan, akses, dan kelola foto serta video dari ponsel ke Hard disk
-di servermu — sederhana, cepat, ringan, dan pastinya privat.
+Simpan, akses, dan kelola foto serta video dari ponsel langsung ke Hard Disk
+di server pribadimu — sederhana, cepat, ringan, dan sepenuhnya privat.
 
 ![status](https://img.shields.io/badge/status-in%20development-orange)
 ![backend](https://img.shields.io/badge/backend-Node.js%20%2B%20Express-green)
@@ -20,78 +20,101 @@ di servermu — sederhana, cepat, ringan, dan pastinya privat.
 
 **Hestia** adalah aplikasi penyimpanan foto & video yang berjalan di **server pribadi**
 (mini PC, Raspberry Pi, atau home server) dan menyimpan seluruh file langsung ke
-**Hard Disk eksternal** punyamu.
+**Hard Disk eksternal** milikmu.
 
-Tujuannya bukan meniru Google Photos atau aplikasi cloud poto pada umumnya, aplikasi ini dibuat sebagai solusi
-penyimpanan keluarga yang **privat, ringan, dan mudah digunain**. Setiap anggota
-keluarga punya akun sendiri, storage sendiri, dan hak akses sendiri.
-Semua data tetap berada di perangkat prbadimu — **tidak ada cloud pihak ketiga sama sekali.**
+Tujuannya bukan meniru Google Photos atau layanan cloud pada umumnya, melainkan
+menyediakan solusi penyimpanan keluarga yang **privat, ringan, dan mudah digunakan**.
+Setiap anggota keluarga memiliki akun sendiri, ruang penyimpanan sendiri, dan hak akses
+sendiri. Seluruh data tetap berada di perangkat pribadimu — **tanpa cloud pihak ketiga.**
 
-> Kenapa Hestia? Nama "Hestia" diambil dari dewi perapian & rumah dalam mitologi Yunani —
+> Nama "Hestia" diambil dari dewi perapian & rumah dalam mitologi Yunani —
 > melambangkan tempat yang aman untuk menyimpan kenangan keluarga.
 
 ---
 
 ## ✨ Fitur
 
-- 🔐 **Registrasi & login** — akun berbasis email + password, autentikasi token. (sengaja dibuat gini, biar keren aja)
-- 👨‍👩‍👧‍👦 **Multi-user** — biar anggota keluarga bisa pakai semuanya.
-- ⬆️ **Upload foto & video** — satu atau banyak file sekaligus, bisa bikin subfolder juga.
-- 🗂️ **Browse file** — jelajahi folder, lihat thumbnail, ukuran, dan tanggal upload.
-- 🖼️ **Thumbnail otomatis** — pratinjau gambar dibuat otomatis pas upload.
-- ⬇️ **Download** — ambil poto yang ada di hard disk bisa langsung, dimanapunn kapanpun (mendukung resume/streaming).
-- 🕘 **Riwayat upload** — catatan file yang berhasil atau gagal di upload.
-- 💽 **Deteksi HDD** — jadi disini wajib pasang hdd eksternal ya!
-- 🔒 **Aman** — password di-hash, isolasi antar-user, proteksi path & validasi file.
+- 🔐 **Registrasi & login** — akun berbasis email + password dengan autentikasi token (JWT).
+- 👨‍👩‍👧‍👦 **Multi-user** — banyak akun dalam satu server, penyimpanan tiap pengguna terisolasi.
+- ⬆️ **Upload dari galeri** — pilih banyak foto & video langsung dari galeri ponsel, mendukung subfolder.
+- 🗂️ **Jelajah file** — telusuri folder, lihat thumbnail, ukuran, dan tanggal upload.
+- 🖼️ **Thumbnail otomatis** — pratinjau gambar dibuat otomatis saat upload.
+- ⬇️ **Download** — ambil kembali file dari Hard Disk ke ponsel (mendukung resume/streaming).
+- 🕘 **Riwayat upload** — catatan file yang berhasil maupun gagal diunggah.
+- 💽 **Deteksi HDD** — upload otomatis dinonaktifkan bila Hard Disk eksternal belum terpasang.
+- 🔒 **Aman** — password di-hash, isolasi antar-pengguna, proteksi path & validasi tipe file.
 
 ---
 
-## 🧰 Tools yang Diperlukan
+## 🗂️ Struktur Proyek
+
+```
+hestia/
+├── backend/      # Server API (Node.js + Express + SQLite)
+│   └── server/
+├── frontend/     # Aplikasi mobile (Flutter)
+│   └── app/
+├── README.md
+└── CHANGELOG.md
+```
+
+---
+
+## 🧰 Teknologi yang Digunakan
+
+**Backend**
 
 | Kategori | Teknologi |
 |----------|-----------|
-| **Bahasa & Runtime** | Node.js (JavaScript) |
-| **Web Framework** | Express |
-| **Database** | SQLite (menyimpan metadata; file asli di HDD) |
-| **Autentikasi** | JSON Web Token (JWT) + bcrypt (hashing password) |
-| **Upload File** | Multer |
-| **Pemrosesan Gambar** | Sharp (thumbnail) |
-| **Aplikasi Mobile** | Flutter / Dart *(dalam pengembangan)* |
-| **Keamanan Akses** | express-rate-limit, HTTPS (reverse proxy) |
+| Bahasa & Runtime | Node.js (JavaScript) |
+| Web Framework | Express |
+| Database | SQLite — menyimpan metadata; file asli di HDD |
+| Autentikasi | JSON Web Token (JWT) + bcrypt |
+| Upload File | Multer |
+| Pemrosesan Gambar | Sharp (thumbnail) |
+| Keamanan | express-rate-limit, anti path-traversal |
+
+**Frontend (Mobile)**
+
+| Kategori | Teknologi |
+|----------|-----------|
+| Framework | Flutter / Dart |
+| HTTP Client | Dio (multipart upload + progres) |
+| State Management | Provider |
+| Pemilih Media | image_picker (galeri sistem) |
+| Penyimpanan Token | flutter_secure_storage |
 
 ---
 
 ## 💻 System Requirements
 
-### Server (untuk menjalankan Hestia)
+### Server
 
 | Komponen | Minimum | Rekomendasi |
 |----------|---------|-------------|
-| **Sistem Operasi** | Linux / Windows / macOS | Linux (mini PC / Raspberry Pi 4+) |
-| **Node.js** | v20 atau lebih baru | v20 LTS |
-| **RAM** | 512 MB | 1 GB atau lebih |
-| **Penyimpanan** | HDD eksternal | HDD + HDD kedua untuk backup |
-| **Jaringan** | LAN (jaringan lokal) | LAN + domain & HTTPS untuk akses internet |
+| Sistem Operasi | Linux / Windows / macOS | Linux (mini PC / Raspberry Pi 4+) |
+| Node.js | v20 atau lebih baru | v20 LTS |
+| RAM | 512 MB | 1 GB atau lebih |
+| Penyimpanan | HDD eksternal | HDD + HDD kedua untuk backup |
+| Jaringan | LAN (jaringan lokal) | LAN; akses luar jaringan via VPN (mis. Tailscale) atau domain + HTTPS |
 
-
-### Perangkat pengguna
+### Perangkat Pengguna
 
 - Smartphone **Android**.
-- Aplikasi dipasang langsung via file **APK** (yang akan di buat nanti)
+- Aplikasi dipasang langsung melalui file **APK** (tidak wajib lewat Play Store).
 
 ---
 
-## 🚀 Cara Install
+## 🚀 Cara Install — Server (Backend)
 
 ### 1. Prasyarat
-Pastikan sudah terpasang:
 - [Node.js ≥ 20](https://nodejs.org/) (termasuk npm)
 - [Git](https://git-scm.com/)
 
 ### 2. Ambil kode
 ```bash
 git clone https://github.com/rinorouu/hestia.git
-cd hestia/server
+cd hestia/backend/server
 ```
 
 ### 3. Install dependencies
@@ -103,7 +126,7 @@ npm install
 ```bash
 cp .env.example .env
 ```
-Lalu buka `.env` dan sesuaikan. Yang penting:
+Buka `.env` lalu sesuaikan. Yang penting:
 - **`JWT_SECRET`** — isi dengan string acak panjang. Generate cepat:
   ```bash
   node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
@@ -117,8 +140,30 @@ npm start        # mode normal
 npm run dev      # mode pengembangan (auto-reload)
 ```
 
-Server berjalan di **`http://localhost:3000`**. Cek dengan membuka `http://localhost:3000/api/health`
-— jika membalas `{"status":"ok"}`, server siap digunakan. 🎉
+Server berjalan di **`http://localhost:3000`**. Cek dengan membuka
+`http://localhost:3000/api/health` — jika membalas `{"status":"ok"}`, server siap digunakan. 🎉
+
+---
+
+## 📱 Membangun Aplikasi Mobile (Frontend)
+
+### 1. Prasyarat
+- [Flutter SDK](https://flutter.dev/) + Android SDK (mis. via Android Studio)
+
+### 2. Siapkan & build
+```bash
+cd hestia/frontend/app
+flutter pub get
+dart run flutter_launcher_icons   # (opsional) generate ikon aplikasi
+flutter build apk --release
+```
+
+APK hasil build ada di:
+```
+build/app/outputs/flutter-apk/app-release.apk
+```
+Pasang di ponsel, buka aplikasi, lalu isi alamat server (mis. `http://192.168.1.10:3000`).
+Ponsel harus berada di jaringan yang sama dengan server, atau terhubung melalui VPN.
 
 ---
 

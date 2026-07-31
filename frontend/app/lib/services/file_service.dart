@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
 import '../core/api_client.dart';
@@ -60,6 +59,15 @@ class UploadOutcome {
   final List<UploadFailure> failed;
 }
 
+/// Foto/video yang dipilih user dari galeri untuk diunggah.
+class PickedMedia {
+  const PickedMedia({required this.path, required this.name, required this.size});
+
+  final String path;
+  final String name;
+  final int size;
+}
+
 /// Browse, upload, download, detail, dan hapus file — sesuai
 /// docs/API_SPEC.md bagian Files, diverifikasi lewat server/src/routes/files.js.
 class FileService {
@@ -113,7 +121,7 @@ class FileService {
   /// progres agregat seluruh batch, bukan per-file, karena semuanya dikirim
   /// dalam satu body multipart.
   Future<UploadOutcome> upload({
-    required List<PlatformFile> files,
+    required List<PickedMedia> files,
     String? path,
     ProgressCallback? onProgress,
   }) async {
@@ -123,9 +131,8 @@ class FileService {
         formData.fields.add(MapEntry('path', path));
       }
       for (final f in files) {
-        if (f.path == null) continue;
         formData.files.add(
-          MapEntry('files', await MultipartFile.fromFile(f.path!, filename: f.name)),
+          MapEntry('files', await MultipartFile.fromFile(f.path, filename: f.name)),
         );
       }
       final res = await _apiClient.dio.post('/upload', data: formData, onSendProgress: onProgress);

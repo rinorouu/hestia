@@ -21,8 +21,8 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   shared_preferences: ^2.2.3
 
-  # Pilih file untuk upload (foto & video, multi-select)
-  file_picker: ^8.0.6
+  # Pilih foto/video langsung dari GALERI (multi-select, Photo Picker sistem)
+  image_picker: ^1.1.2
 
   # Thumbnail dengan cache + custom header (Authorization)
   cached_network_image: ^3.4.1
@@ -43,5 +43,18 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^4.0.0
 
+  # Generator ikon launcher (bikin semua ukuran dari 1 gambar)
+  flutter_launcher_icons: ^0.14.1
+
 flutter:
   uses-material-design: true
+
+# Konfigurasi ikon app. Ganti assets/icon/hestia.png dengan logo pilihanmu
+# (PNG kotak, ideal 1024x1024), lalu jalankan: dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/hestia.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#12203A"
+  adaptive_icon_foreground: "assets/icon/hestia.png"
